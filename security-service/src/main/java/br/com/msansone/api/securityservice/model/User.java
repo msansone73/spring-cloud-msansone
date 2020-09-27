@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tuser")
-public class User {
+public class User extends AbstractModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,12 +17,12 @@ public class User {
 	private String login;
 	private String password;
 	private Long status;
+
 	
 	public User() {
 	}
-	
+
 	public User(Long id, String name, String login, String password, Long status) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.login = login;

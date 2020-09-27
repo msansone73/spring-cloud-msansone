@@ -6,4 +6,6 @@ import br.com.msansone.api.securityservice.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+	User findByLogin(String login);
+
 }
