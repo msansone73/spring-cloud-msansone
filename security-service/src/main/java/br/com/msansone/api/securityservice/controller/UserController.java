@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.msansone.api.securityservice.model.User;
 import br.com.msansone.api.securityservice.model.rest.ReturnError;
+import br.com.msansone.api.securityservice.model.rest.UserResponse;
 import br.com.msansone.api.securityservice.service.UserService;
 
 @RestController
@@ -37,9 +38,7 @@ public class UserController {
 			response = new ResponseEntity<User>(user, HttpStatus.OK);
 			
 		} else {
-			user = new User();
-			user.setReturnError(new ReturnError("User "+login+" not found.", "UserController.getByLogin"));
-			response = new ResponseEntity<User>(user, HttpStatus.OK);
+			response = new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
 		}
 		
 		

@@ -1,19 +1,26 @@
 package br.com.msansone.api.securityservice.model;
 
-import br.com.msansone.api.securityservice.model.rest.ReturnError;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 
+
+@MappedSuperclass
 public abstract class AbstractModel {
 
-	private ReturnError returnError;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 
-
-	public ReturnError getReturnError() {
-		return returnError;
+	public Long getId() {
+		return id;
 	}
 
-	public void setReturnError(ReturnError returnError) {
-		this.returnError = returnError;
+	public void setId(Long id) {
+		this.id = id;
 	}
+	
 	
 	
 }
