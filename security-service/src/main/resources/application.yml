@@ -3,17 +3,8 @@ server:
 spring:
   application:
       name: security-service
-  datasource:
-      driver-class-name: org.postgresql.Driver
-      platform: postgres
-      url: jdbc:postgresql://sec.msansone.com.br:5432/sansone-db
-      password: senha
-      username: msansone
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    open-in-view: false
-    generate-ddl: true
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:8888
