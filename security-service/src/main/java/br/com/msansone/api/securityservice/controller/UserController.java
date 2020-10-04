@@ -28,21 +28,66 @@ public class UserController {
 		return new ResponseEntity<List<User>>(users,HttpStatus.OK);
 	}
 	
-	@GetMapping("/user/login/{login}")
-	public ResponseEntity<User> getByLogin(@PathVariable String login){
-		User user = userService.getByLogin(login);
+	@GetMapping("/user/id/{userId}")
+	public ResponseEntity<UserResponse> getById(@PathVariable Long userId){
+		User user = userService.getById(userId);
+		UserResponse userResponse = new UserResponse();
 		
-		ResponseEntity<User> response =null;
 		
 		if (user!=null) {
-			response = new ResponseEntity<User>(user, HttpStatus.OK);
+			userResponse.setUser(user);
+			userResponse.setReturnError(null);
 			
 		} else {
-			response = new ResponseEntity<User>(user, HttpStatus.NOT_FOUND);
+			userResponse.setUser(null);
+			userResponse.setReturnError(new ReturnError("User not found", "getByLogin(login)"));
 		}
 		
+		ResponseEntity<UserResponse> response = new ResponseEntity<UserResponse>(userResponse, HttpStatus.OK);
 		
 		return response;
 	}
+	
+	@GetMapping("/user/login/{login}")
+	public ResponseEntity<UserResponse> getByLogin(@PathVariable String login){
+		User user = userService.getByLogin(login);
+		UserResponse userResponse = new UserResponse();
+		
+		
+		if (user!=null) {
+			userResponse.setUser(user);
+			userResponse.setReturnError(null);
+			
+		} else {
+			userResponse.setUser(null);
+			userResponse.setReturnError(new ReturnError("User not found", "getByLogin(login)"));
+		}
+		
+		ResponseEntity<UserResponse> response = new ResponseEntity<UserResponse>(userResponse, HttpStatus.OK);
+		
+		return response;
+	}
+	
+	@GetMapping("/user/pass/login/{login}")
+	public String getPasswordByLogin(@PathVariable String login){
+		User user = userService.getByLogin(login);
+		UserResponse userResponse = new UserResponse();
+		String pass="";
+		
+		if (user!=null) {
+			userResponse.setUser(user);
+			pass = user.getPassword();
+			userResponse.setReturnError(null);
+			
+		} else {
+			userResponse.setUser(null);
+			userResponse.setReturnError(new ReturnError("User not found", "getByLogin(login)"));
+		}
+		
+		ResponseEntity<String> response = new ResponseEntity<String>(pass, HttpStatus.OK);
+		
+		return pass;
+	}
+	
 }
 ;

@@ -10,4 +10,6 @@ public interface UserService {
 
 	User getByLogin(String login);
 
+	User getById(Long userId);
+
 }

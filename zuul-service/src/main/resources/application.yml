@@ -19,3 +19,7 @@ zuul:
       security-service:
         path: /api/security/**
         strip-prefix: false
+      client-service:
+        path: /api/client/**
+        strip-prefix: false
+
