@@ -2,6 +2,9 @@ package br.com.msansone.api.securityservice.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,8 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	private static Logger LOG = LoggerFactory.getLogger(UserController.class);
 	
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> getAllUser() {
@@ -73,6 +78,8 @@ public class UserController {
 		User user = userService.getByLogin(login);
 		UserResponse userResponse = new UserResponse();
 		String pass="";
+		
+		LOG.info("getPasswordByLogin({})", login);
 		
 		if (user!=null) {
 			userResponse.setUser(user);
