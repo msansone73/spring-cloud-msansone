@@ -26,4 +26,15 @@ public class ClientServiceImpl implements ClientService{
 		return ocli.isPresent()?ocli.get():null;
 	}
 
+	@Override
+	public Client add(Client client) {
+		
+		Client nclient= new Client();
+		nclient.setEmail(client.getEmail());
+		nclient.setLogin(client.getLogin());
+		nclient.setName(client.getName());
+		nclient.setTelemovel(client.getTelemovel());
+		return clientRepository.save(nclient);
+	}
+
 }

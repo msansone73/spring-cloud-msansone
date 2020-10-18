@@ -10,4 +10,6 @@ public interface ClientService {
 
 	Client getById(Long id);
 
+	Client add(Client client);
+
 }
