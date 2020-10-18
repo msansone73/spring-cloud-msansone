@@ -1,0 +1,10 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: warehouse-service
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:8888
