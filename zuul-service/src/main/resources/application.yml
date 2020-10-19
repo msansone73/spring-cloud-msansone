@@ -22,4 +22,7 @@ zuul:
       client-service:
         path: /api/client/**
         strip-prefix: false
+      warehouse-service:
+        path: /api/warehouse/**
+        strip-prefix: false        
 
