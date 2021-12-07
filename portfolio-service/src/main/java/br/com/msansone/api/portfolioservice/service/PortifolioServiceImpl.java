@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import br.com.msansone.api.portfolioservice.model.rest.StockWebValResponse;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -46,8 +47,10 @@ public class PortifolioServiceImpl implements PortifolioService{
 		Long stockQtd = request.getQuantity();
 
 		// get Stock with code
-		ResponseEntity<Stock> responseCode = stockDbClient.getStockByCode(stockCode);
-		Stock stock = responseCode.getBody();
+		Stock stock = getStockInfoInWS(stockCode);
+
+
+		//Stock stock = responseCode.getBody();
 		LOG.info("Stock readed: "+ stock.toString());
 
 		BigDecimal stockUnitaryValue=stock.getLastValue();
@@ -89,6 +92,20 @@ public class PortifolioServiceImpl implements PortifolioService{
 		transaction=responseTran.getBody();
 		
 		return transaction;
+	}
+
+
+	@HystrixCommand( fallbackMethod = "getStockInfoInWSFallBack")
+	private Stock getStockInfoInWS(String stockCode) {
+		Stock responseCode = stockDbClient.getStockByCode(stockCode).getBody();
+		return responseCode;
+	}
+
+	private Stock getStockInfoInWSFallBack(String stockCode) {
+		Stock responseCode = new Stock();
+		responseCode.setCode(stockCode);
+		responseCode.setLastValue(new BigDecimal(-1));
+		return responseCode;
 	}
 
 }

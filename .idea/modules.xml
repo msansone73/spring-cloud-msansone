@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/config-service/config-service.iml" filepath="$PROJECT_DIR$/config-service/config-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eureka-service/eureka-service.iml" filepath="$PROJECT_DIR$/eureka-service/eureka-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/portfolio-service/portfolio-service.iml" filepath="$PROJECT_DIR$/portfolio-service/portfolio-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-cloud-mystocks.iml" filepath="$PROJECT_DIR$/.idea/spring-cloud-mystocks.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stock-db-service/stock-db-service.iml" filepath="$PROJECT_DIR$/stock-db-service/stock-db-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/stock-web-service/stock-web-service.iml" filepath="$PROJECT_DIR$/stock-web-service/stock-web-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zuul-service/zuul-service.iml" filepath="$PROJECT_DIR$/zuul-service/zuul-service.iml" />
+    </modules>
+  </component>
+</project>

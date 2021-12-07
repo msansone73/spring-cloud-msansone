@@ -5,13 +5,6 @@ spring:
 server:
   port: 8070
 
-# Eureka client
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    serviceUrl:
-      defaultZone: ${EUREKA_URL:http://localhost:8761/eureka/}
   
 zuul:
   routes:
@@ -26,8 +19,9 @@ zuul:
       strip-prefix: false
 
 
+
 ribbon:
-  ReadTimeout: 60000
-  connection-timeout: 3000
+  ReadTimeout: 1000
+  connection-timeout: 1000
   eureka:
     enabled: true
